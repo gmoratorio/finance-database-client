@@ -104,6 +104,7 @@ function generateEventHandlers() {
             url: `${serverURL}/property/${id}`,
             type: "DELETE",
             success: function(result) {
+                console.log(result);
                 alert(result);
                 window.location.href = "index.html";
             }
