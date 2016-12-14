@@ -23,7 +23,7 @@ function generatePage(location) {
 }
 
 function generateIndex() {
-    $.getJSON("http://localhost:3000/property")
+    $.getJSON("https://finance-db.herokuapp.com/property")
         .then((data) => {
             const parent = $(".property-summary");
             data.forEach((property) => {
@@ -40,7 +40,7 @@ function generateIndex() {
 
 function generateInspectProperty() {
     const id = returnIdFromParams();
-    $.getJSON(`http://localhost:3000/property/${id}`)
+    $.getJSON(`https://finance-db.herokuapp.com/property/${id}`)
         .then((data) => {
             let presentedData = data;
             presentedData.viewableRent = (presentedData.rent / 100);
@@ -57,7 +57,7 @@ function generateInspectProperty() {
 
 function generateEditProperty(){
   const id = returnIdFromParams();
-  $.getJSON(`http://localhost:3000/property/${id}`)
+  $.getJSON(`https://finance-db.herokuapp.com/property/${id}`)
       .then((data) => {
           let presentedData = data;
           presentedData.viewableRent = (presentedData.rent / 100);
@@ -89,7 +89,7 @@ function generateEventHandlers() {
     $("#delete-property").click(() => {
         const id = returnIdFromParams();
         $.ajax({
-            url: `http://localhost:3000/property/${id}`,
+            url: `https://finance-db.herokuapp.com/property/${id}`,
             type: "DELETE",
             success: function(result) {
                 alert(result);
@@ -118,7 +118,7 @@ function generateEventHandlers() {
             }
 
             $.ajax({
-              url: `http://localhost:3000/property/${id}`,
+              url: `https://finance-db.herokuapp.com/property/${id}`,
               type: "PUT",
               data: updatedProperty,
               success: function(result){
@@ -143,7 +143,7 @@ function generateEventHandlers() {
             }
             console.log(updatedProperty);
             $.ajax({
-              url: `http://localhost:3000/property/`,
+              url: `https://finance-db.herokuapp.com/property/`,
               type: "POST",
               data: updatedProperty,
               success: function(result){
