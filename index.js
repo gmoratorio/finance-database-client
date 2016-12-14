@@ -4,9 +4,11 @@ $(document).ready(() => {
     generateEventHandlers();
 });
 
+let serverURL = "";
 
 
 function generatePage(location) {
+  serverURL = returnEnvironment();
     switch (location) {
         case "":
         case "index":
@@ -22,8 +24,18 @@ function generatePage(location) {
     }
 }
 
+function returnEnvironment(){
+  if(window.location.hostname === "localhost"){
+    return "http://localhost:3000";
+  }
+  else{
+    return "https://finance-db.herokuapp.com";
+  }
+
+}
+
 function generateIndex() {
-    $.getJSON("https://finance-db.herokuapp.com/property")
+    $.getJSON(`${serverURL}/property`)
         .then((data) => {
             const parent = $(".property-summary");
             data.forEach((property) => {
@@ -40,7 +52,7 @@ function generateIndex() {
 
 function generateInspectProperty() {
     const id = returnIdFromParams();
-    $.getJSON(`https://finance-db.herokuapp.com/property/${id}`)
+    $.getJSON(`${serverURL}/property/${id}`)
         .then((data) => {
             let presentedData = data;
             presentedData.viewableRent = (presentedData.rent / 100);
@@ -57,7 +69,7 @@ function generateInspectProperty() {
 
 function generateEditProperty(){
   const id = returnIdFromParams();
-  $.getJSON(`https://finance-db.herokuapp.com/property/${id}`)
+  $.getJSON(`${serverURL}/property/${id}`)
       .then((data) => {
           let presentedData = data;
           presentedData.viewableRent = (presentedData.rent / 100);
@@ -89,7 +101,7 @@ function generateEventHandlers() {
     $("#delete-property").click(() => {
         const id = returnIdFromParams();
         $.ajax({
-            url: `https://finance-db.herokuapp.com/property/${id}`,
+            url: `${serverURL}/property/${id}`,
             type: "DELETE",
             success: function(result) {
                 alert(result);
@@ -118,7 +130,7 @@ function generateEventHandlers() {
             }
 
             $.ajax({
-              url: `https://finance-db.herokuapp.com/property/${id}`,
+              url: `${serverURL}/property/${id}`,
               type: "PUT",
               data: updatedProperty,
               success: function(result){
@@ -143,7 +155,7 @@ function generateEventHandlers() {
             }
             console.log(updatedProperty);
             $.ajax({
-              url: `https://finance-db.herokuapp.com/property/`,
+              url: `${serverURL}/property/`,
               type: "POST",
               data: updatedProperty,
               success: function(result){
