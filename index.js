@@ -54,7 +54,7 @@ function generateSummaryPage(location) {
                 const template = Handlebars.compile(source);
                 const html = template(viewableElement)
                 parent.append(html);
-                generateRowEventHandler(location, element.id);
+                generateSummaryRowEventHandler(location, element.id);
             });
         })
         .catch((err) => {
@@ -74,6 +74,7 @@ function generateInspectProperty() {
             const template = Handlebars.compile(source);
             const html = template(presentedData);
             parent.append(html);
+            generateInspectPropertyRowEventHandler('property', id);
         })
         .then(() => {
             $.getJSON(`${serverURL}/property/${id}/tenant`)
@@ -85,6 +86,7 @@ function generateInspectProperty() {
                         const template = Handlebars.compile(source);
                         const html = template(presentedData);
                         parent.append(html);
+                        generateInspectPropertyRowEventHandler('tenant', presentedData.id);
                     });
                 })
                 .catch((err) => {
@@ -94,7 +96,6 @@ function generateInspectProperty() {
         .then(() => {
             $.getJSON(`${serverURL}/property/${id}/payment`)
                 .then((data) => {
-                    console.log(data);
                     data.forEach(paymentObject => {
                         let presentedData = paymentObject;
                         presentedData.viewableAmount = (presentedData.amount / 100);
@@ -103,6 +104,7 @@ function generateInspectProperty() {
                         const template = Handlebars.compile(source);
                         const html = template(presentedData);
                         parent.append(html);
+                        generateInspectPropertyRowEventHandler('payment', presentedData.id);
                     });
                 })
                 .catch((err) => {
@@ -216,7 +218,7 @@ function generateStaticEventHandlers() {
     });
 }
 
-function generateRowEventHandler(location, id) {
+function generateSummaryRowEventHandler(location, id) {
     $(`#${location}-${id}`).click(() => {
         if (location === 'property') {
             window.location.href = `inspect-property.html?id=${id}`;
@@ -238,6 +240,12 @@ function generateRowEventHandler(location, id) {
                 });
         }
 
+    });
+}
+
+function generateInspectPropertyRowEventHandler(location, id) {
+    $(`#${location}-${id}`).click(() => {
+      window.location.href = `edit-${location}.html?id=${id}`;
     });
 }
 

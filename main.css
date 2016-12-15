@@ -13,7 +13,7 @@ main{
   justify-content: center;
 }
 
-.property-section, .tenant-section, .payment-section{
+.property-section, .form-container{
   margin-top: 5em;
 }
 
