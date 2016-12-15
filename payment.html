@@ -47,37 +47,43 @@
     <main class="container summary-area">
 
         <table class="table table-hover">
-            <caption>Property Summary - Click on a property for more information</caption>
+            <caption>Payment Summary - Click on a payment for more information.</caption>
 
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Address</th>
-                    <th>Unit</th>
-                    <th>Rent</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Comment</th>
+                    <th>Tenant ID</th>
+                    <th>Tenant Name</th>
+                    <th>Property Address</th>
                 </tr>
             </thead>
 
-            <tbody class = "property-table">
+            <tbody class = "payment-table">
 
             </tbody>
 
         </table>
         <div class="btn-group btn-group-justified" role="group" aria-label="control buttons">
             <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default" id="add-new-property">Add New Property</button>
+                <button type="button" class="btn btn-default" id="add-new-property">Add New Payment</button>
             </div>
         </div>
 
     </main>
 
 
-    <script id="property-table" type="text/x-handlebars-template">
-      <tr id="property-{{id}}">
-          <td>{{id}}</td>
-          <td>{{address}}</td>
-          <td>{{unit}}</td>
-          <td>${{viewableRent}}</td>
+    <script id="payment-table" type="text/x-handlebars-template">
+      <tr id="payment-{{id}}">
+        <td>{{id}}</td>
+        <td>{{date}}</td>
+        <td>${{viewableAmount}}</td>
+        <td>{{comment}}</td>
+        <td>{{tenant_id}}</td>
+        <td>{{name}}</td>
+        <td>{{address}}</td>
       </tr>
 
     </script>

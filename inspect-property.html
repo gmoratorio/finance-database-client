@@ -20,55 +20,145 @@
 </head>
 
 <body>
+
+  <header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <a class="navbar-brand navbar-left" href="index.html">Property Finance Database</a>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Summaries <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="index.html">All Properties</a></li>
+                <li><a href="tenant.html">All Tenants</a></li>
+                <li><a href="payment.html">All Payments</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+  </header>
+
     <main class="container flex-container">
-        <div class="panel panel-default">
-            <div class="panel-body property-detail">
-                <div class="row">
-                  <div class="col-sm-1">
-                      <h3>
-                          ID
-                      </h3>
-                  </div>
-                    <div class="col-sm-6">
-                        <h3>
-                            Address
-                        </h3>
-                    </div>
-                    <div class="col-sm-3">
-                        <h3>
-                            Unit
-                        </h3>
-                    </div>
-                    <div class="col-sm-2">
-                        <h3>
-                            Rent
-                        </h3>
-                    </div>
-                </div>
-                <!-- Property info here -->
-            </div>
-        </div>
-        <div class="btn-group btn-group-justified" role="group" aria-label="control buttons">
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default" id="back-to-summary">Back to Property Summary</button>
-            </div>
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default" id="edit-property">Edit this Property</button>
-            </div>
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default" id="delete-property">Delete this Property</button>
-            </div>
-        </div>
+      <table class="table table-hover property-section">
+          <caption>Property Info - Click on property to edit</caption>
+
+          <thead>
+              <tr>
+                  <th>Property ID</th>
+                  <th>Address</th>
+                  <th>City</th>
+                  <th>State</th>
+                  <th>Zip</th>
+                  <th>Unit</th>
+                  <th>Rent</th>
+              </tr>
+          </thead>
+
+          <tbody class = "property-info-table">
+            <!-- Detailed Property info goes here -->
+          </tbody>
+
+      </table>
+
+      <table class="table table-hover tenant-section">
+          <caption>Tenant Info - Click on tenant to edit</caption>
+
+          <thead>
+              <tr>
+                  <th>Tenant ID</th>
+                  <th>Name</th>
+                  <th>Age</th>
+
+              </tr>
+          </thead>
+
+          <tbody class = "tenant-info-table">
+            <!-- Detailed Tenant info goes here -->
+          </tbody>
+
+      </table>
+      <div class="btn-group btn-group-justified" role="group" aria-label="control buttons">
+          <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default" id="add-tenant">Add Tenant</button>
+          </div>
+      </div>
+
+      <table class="table table-hover payment-section">
+          <caption>Payment Info - Click on payment to edit</caption>
+
+          <thead>
+              <tr>
+                  <th>Payment ID</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Comment</th>
+                  <th>Tenant ID</th>
+                  <th>Tenant Name</th>
+              </tr>
+          </thead>
+
+          <tbody class = "payment-info-table">
+            <!-- Detailed Tenant info goes here -->
+          </tbody>
+
+      </table>
+      <div class="btn-group btn-group-justified" role="group" aria-label="control buttons">
+          <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default" id="add-payment">Add Payment</button>
+          </div>
+      </div>
+
+
     </main>
 
-    <script id="property-detail" type="text/x-handlebars-template">
+    <script id="property-info-table" type="text/x-handlebars-template">
+      <tr id="property-{{id}}">
+          <td>{{id}}</td>
+          <td>{{address}}</td>
+          <td>{{city}}</td>
+          <td>{{state}}</td>
+          <td>{{zip}}</td>
+          <td>{{unit}}</td>
+          <td>${{viewableRent}}</td>
+      </tr>
+    </script>
+
+    <script id="tenant-info-table" type="text/x-handlebars-template">
+      <tr id="tenant-{{id}}">
+          <td>{{id}}</td>
+          <td>{{name}}</td>
+          <td>{{age}}</td>
+
+      </tr>
+    </script>
+
+    <script id="payment-info-table" type="text/x-handlebars-template">
+      <tr id="payment-{{id}}">
+          <td>{{id}}</td>
+          <td>{{date}}</td>
+          <td>${{viewableAmount}}</td>
+          <td>{{comment}}</td>
+          <td>{{tenant_id}}</td>
+          <td>{{name}}</td>
+
+      </tr>
+    </script>
+
+    <!-- <script id="property-detail" type="text/x-handlebars-template">
 
         <div class="row">
-          <div class="col-sm-1">
-              <p>
-                  {{id}}
-              </p>
-          </div>
+            <div class="col-sm-1">
+                <p>
+                    {{id}}
+                </p>
+            </div>
             <div class="col-sm-6">
                 <div class="row">
                     <div class="col-sm-4">
@@ -105,6 +195,24 @@
                     ${{viewableRent}}
                 </p>
             </div>
+        </div>
+
+
+    </script> -->
+
+    <script id="tenant-detail" type="text/x-handlebars-template">
+        <div class="row">
+            <div class="col-sm-6">
+                <p>
+                    {{name}}
+                </p>
+            </div>
+            <div class="col-sm-6">
+                <p>
+                    {{age}}
+                </p>
+            </div>
+
         </div>
 
 

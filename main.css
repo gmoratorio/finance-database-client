@@ -5,5 +5,26 @@ main{
 .flex-container{
   display:flex;
   flex-direction: column;
+}
+
+.summary-area{
+  display:flex;
+  flex-direction: column;
   justify-content: center;
+}
+
+.property-section, .tenant-section, .payment-section{
+  margin-top: 5em;
+}
+
+.tenant-section, .payment-section{
+  margin-top: 3em;
+}
+
+.panel-default {
+  margin-bottom: 0;
+}
+
+.table-hover {
+  margin-bottom: 1em;
 }

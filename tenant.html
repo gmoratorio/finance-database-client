@@ -47,37 +47,35 @@
     <main class="container summary-area">
 
         <table class="table table-hover">
-            <caption>Property Summary - Click on a property for more information</caption>
+            <caption>Tenant Summary - Click on a tenant for more information.</caption>
 
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Address</th>
-                    <th>Unit</th>
-                    <th>Rent</th>
+                    <th>Name</th>
+                    <th>Age</th>
                 </tr>
             </thead>
 
-            <tbody class = "property-table">
+            <tbody class = "tenant-table">
 
             </tbody>
 
         </table>
         <div class="btn-group btn-group-justified" role="group" aria-label="control buttons">
             <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default" id="add-new-property">Add New Property</button>
+                <button type="button" class="btn btn-default" id="add-new-property">Add New Tenant</button>
             </div>
         </div>
 
     </main>
 
 
-    <script id="property-table" type="text/x-handlebars-template">
-      <tr id="property-{{id}}">
+    <script id="tenant-table" type="text/x-handlebars-template">
+      <tr id="tenant-{{id}}">
           <td>{{id}}</td>
-          <td>{{address}}</td>
-          <td>{{unit}}</td>
-          <td>${{viewableRent}}</td>
+          <td>{{name}}</td>
+          <td>{{age}}</td>
       </tr>
 
     </script>
